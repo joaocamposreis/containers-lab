@@ -117,3 +117,18 @@ jobs:
     - name: Terraform Creating and Update
       if: env.DESTROY != 'true'
       run: terraform apply -auto-approve -input=false
+
+    - name: Set up Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Fetch latest changes
+      run: git fetch origin infra
+
+    - name: Rebase or merge local changes
+      run: git rebase origin/infra || git merge origin/infra
+
+    # Your existing push step:
+    - name: Push changes
+      run: git push origin infra      
