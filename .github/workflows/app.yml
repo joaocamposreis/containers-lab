@@ -111,7 +111,7 @@ jobs:
         with:
           task-definition: ./app/deploy/ecs-task-definition.json
           container-name: ${{ env.IMAGE_NAME }}
-          image: ${{ github.event.repository.name }}
+          image: gersontpc/ci-cd-app:v1.0.0
           taskRoleArn: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/LabRole
           executionRoleArn: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/LabRole
 
